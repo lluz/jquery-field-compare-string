@@ -1,8 +1,8 @@
 # jQuery Field Compare String
 
-## Function
+## Function name
 
-jQuery.jFieldCompareString
+jFieldCompareString
 
 ## Description
 
