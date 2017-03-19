@@ -5,19 +5,23 @@ module.exports = function(grunt) {
         pkg: grunt.file.readJSON("package.json"),
         
         proj_name: 'jQuery Field Compare String',
+        proj_funcname: 'jFieldCompareString',
+        proj_codename: 'jquery-field-compare-string',
 
         dirs: {
+            dist_folder: 'dist',
             js_dist_folder: 'dist/js',
-            css_dist_folder: 'dist/css'
+            css_dist_folder: 'dist/css',
+            dl_folder: 'dl'
         },
 
         uglify : {
             options: {
-                banner: "/*! <%= proj_name %> v<%= pkg.version %> - Licensed under the <%= pkg.license %> license - <%= pkg.author %> / Project home: <%= pkg.homepage %> */\n"
+                banner: "/*! <%= proj_name %> (<%= proj_funcname %>) v<%= pkg.version %> - Licensed under the <%= pkg.license %> license - <%= pkg.author %> / Project home: <%= pkg.homepage %> */\n"
             },
             target: {
                 files: {
-                    "<%= dirs.js_dist_folder %>/jquery.fieldCompareString.min.js" : "<%= dirs.js_dist_folder %>/jquery.fieldCompareString.js"
+                    "<%= dirs.js_dist_folder %>/jquery.<%= proj_funcname %>.min.js" : "<%= dirs.js_dist_folder %>/jquery.<%= proj_funcname %>.js"
                 }
             }
         },
@@ -26,7 +30,7 @@ module.exports = function(grunt) {
             options: {},
             target: {
                 files: {
-                    '<%= dirs.css_dist_folder %>/jquery.fieldCompareString.min.css': ['<%= dirs.css_dist_folder %>/jquery.fieldCompareString.css']
+                    '<%= dirs.css_dist_folder %>/jquery.<%= proj_funcname %>.min.css': ['<%= dirs.css_dist_folder %>/jquery.<%= proj_funcname %>.css']
                 }
             }
         },
@@ -38,13 +42,13 @@ module.exports = function(grunt) {
             },
             js: {
                 files: [
-                    "<%= dirs.js_dist_folder %>/jquery.fieldCompareString.js"
+                    "<%= dirs.js_dist_folder %>/jquery.<%= proj_funcname %>.js"
                 ],
                 tasks: ["minify_js"]
             },
             css: {
                 files: [
-                    "<%= dirs.css_dist_folder %>/jquery.fieldCompareString.css"
+                    "<%= dirs.css_dist_folder %>/jquery.<%= proj_funcname %>.css"
                 ],
                 tasks: ["minify_css"]
             }
@@ -52,10 +56,26 @@ module.exports = function(grunt) {
         
         jshint: {
             files: [
-                "<%= dirs.js_dist_folder %>/jquery.fieldCompareString.js"
+                "<%= dirs.js_dist_folder %>/jquery.<%= proj_funcname %>.js"
             ],
             options: {
                 jshintrc: ".jshintrc"
+            }
+        },
+
+        compress: {
+            main: {
+                options: {
+                    archive: '<%= dirs.dl_folder %>/<%= proj_funcname %>.zip'
+                },
+                files: [
+                    {
+                        expand: true,
+                        cwd: '<%= dirs.dist_folder %>/',
+                        src: ['**'],
+                        dest: '<%= proj_codename %>/'
+                    }
+                ]
             }
         }
     });
@@ -64,7 +84,11 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks("grunt-contrib-jshint");
     grunt.loadNpmTasks("grunt-contrib-watch");
     grunt.loadNpmTasks('grunt-contrib-cssmin');
+    grunt.loadNpmTasks('grunt-contrib-compress');
 
+    grunt.registerTask("zip_dist", [
+        "compress"
+    ]);
     grunt.registerTask("minify_js", [
         "jshint",
         "uglify"

@@ -1,6 +1,6 @@
 {
   "name": "jquery-field-compare-string",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "jQuery Field Compare String - jQuery plugin to compare the value of an input[type=text] or textarea to the string of text contained by an html element.",
   "author": "Copyright (c) 2017 Luis Luz - UXD Lda <dev@uxd.pt>",
   "license": "MIT",
@@ -16,13 +16,14 @@
   "bugs": {
     "url": "https://github.com/lluz/jquery-field-compare-string/issues"
   },
-  "main": "dist/js/jquery.fieldCompareString.js",
+  "main": "dist/js/jquery.jFieldCompareString.js",
   "files": [
-    "dist/js/jquery.fieldCompareString.js"
+    "dist/js/jquery.jFieldCompareString.js"
   ],
   "devDependencies": {
     "concurrently": "^3.4.0",
     "grunt": "^1.0.1",
+    "grunt-contrib-compress": "^1.4.1",
     "grunt-contrib-cssmin": "^2.0.0",
     "grunt-contrib-jshint": "^1.1.0",
     "grunt-contrib-uglify": "^2.2.0",
