@@ -1,31 +1,15 @@
-# Project Name
+# jQuery Field Compare String
 
-TODO: Write a project description
+## jQuery plugin to compare the exact value of an input[type=text] or textarea to a text string html element.
 
-## Installation
+A jQuery plugin for **live comparison** between the typed value of an **input[type=text]** or **textarea** form fields and the **text string** contained by a specified html element. It presents feedback on the transcription progress and can also protect the form field from copy-paste and drag-drop events (optional feature) to ensure that the user is required to type in the exact reference text string. The comparison is case-sensitive so the typed text has to be exact to trigger the success message.
 
-TODO: Describe the installation process
+Visit the project's page [project page](https://lluz.github.io/jQuery.jFieldCompareString/) to read the documentation and see the demos.
 
-## Usage
+## Browser support
 
-TODO: Write usage instructions
-
-## Contributing
-
-1. Fork it!
-2. Create your feature branch: `git checkout -b my-new-feature`
-3. Commit your changes: `git commit -am 'Add some feature'`
-4. Push to the branch: `git push origin my-new-feature`
-5. Submit a pull request :D
-
-## History
-
-TODO: Write history
-
-## Credits
-
-TODO: Write credits
+Compatible with all browsers and IE10+.
 
 ## License
 
-TODO: Write license
+jFieldCompareString is licensed under the [MIT license](http://opensource.org/licenses/MIT).
