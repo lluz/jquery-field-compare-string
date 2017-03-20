@@ -1,5 +1,11 @@
 ## Change Log
 
+#### Version 1.0.2
+###### 2017-03-20
+
+**Comments refinement**
+
+
 #### Version 1.0.1
 ###### 2017-03-19
 
