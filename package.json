@@ -1,8 +1,8 @@
 {
   "name": "jquery-field-compare-string",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "jQuery Field Compare String - jQuery plugin to compare the value of an input[type=text] or textarea to the string of text contained by an html element.",
-  "author": "Copyright (c) 2017 Luis Luz - UXD Lda <dev@uxd.pt>",
+  "author": "Copyright (c) 2017-2026 Luis Luz - UXD Lda <dev@uxd.pt>",
   "license": "MIT",
   "keywords": [
     "jquery-plugin",
@@ -21,23 +21,17 @@
     "dist/js/jquery.jFieldCompareString.js"
   ],
   "devDependencies": {
-    "concurrently": "^3.4.0",
-    "grunt": "^1.4.0",
-    "grunt-contrib-compress": "^1.4.1",
-    "grunt-contrib-cssmin": "^2.0.0",
-    "grunt-contrib-jshint": "^1.1.0",
-    "grunt-contrib-uglify": "^2.2.0",
-    "grunt-contrib-watch": "^1.0.0",
-    "lite-server": "^2.6.1"
+    "adm-zip": "^0.6.0",
+    "concurrently": "^9.1.2",
+    "esbuild": "^0.25.0",
+    "serve": "^14.2.4"
   },
   "scripts": {
-    "dev_start": "concurrent \"grunt\"",
-    "server_start": "concurrent \"grunt\" \"lite-server\"",
-    "compress_dist": "concurrent \"grunt zip_dist\"",
-    "kill_all_node_processes": "TASKKILL /F /IM node.exe"
-  },
-  "dependencies": {
-    "bufferutil": "^4.0.1",
-    "utf-8-validate": "^5.0.2"
+    "build": "npm run build:js && npm run build:css",
+    "build:js": "esbuild dist/js/jquery.jFieldCompareString.js --minify --legal-comments=inline --outfile=dist/js/jquery.jFieldCompareString.min.js",
+    "build:css": "esbuild dist/css/jquery.jFieldCompareString.css --minify --outfile=dist/css/jquery.jFieldCompareString.min.css",
+    "dev_start": "concurrently \"npm run build:js -- --watch\" \"npm run build:css -- --watch\"",
+    "server_start": "concurrently \"npm run dev_start\" \"serve dist -l 7777 --no-clipboard\"",
+    "compress_dist": "node scripts/compress-dist.mjs"
   }
 }
